@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
-# displays all active IPv4 IPs on this machine
 
-ifconfig | grep "inet addr" | cut -d ":" -f2 | cut -d " " -f1
+# Show all IPv4 addresses except loopback
+ip -4 addr show | grep -oP '(?<=inet\s)\d+(\.\d+){3}' | grep -v '^127\.'
